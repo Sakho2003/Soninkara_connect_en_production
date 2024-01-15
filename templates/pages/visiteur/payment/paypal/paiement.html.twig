@@ -1,0 +1,53 @@
+{% extends 'pages/visiteur/themes_visiteur/base.html.twig' %}
+
+{% block title %}Paiement PayPal{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4 pt-5">Paiement via PayPal</h1>
+
+    <p>Veuillez suivre les instructions pour effectuer votre paiement.</p>
+
+    <!-- Conteneur pour le bouton PayPal -->
+    <div id="paypal-button-container"></div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://www.paypal.com/sdk/js?client-id=ARkPFklQISIXBZqDr9F9F2FQFinBGIDQ5w8W1N9nKt0ha6zVFseudE4f70eD7P70Tg8-MdZnKfjzDKGV"></script>
+<script>
+ paypal.Buttons({
+    createOrder: function(data, actions) {
+        // Appel à votre backend pour créer une commande
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: '1.00' // Montant à payer
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        // Capture de la transaction
+        return actions.order.capture().then(function(details) {
+            // Affichage d'une confirmation au client
+            alert('Transaction completed by ' + details.payer.name.given_name);
+            
+            // Redirection vers une page de confirmation
+            window.location.href = '/confirmation_livraison';
+
+            // Envoi des détails de la transaction au serveur pour enregistrement
+            fetch('/chemin/vers/votre-serveur', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(details)
+            }).then(response => response.json())
+              .then(data => console.log(data));
+        });
+    }
+}).render('#paypal-button-container');
+
+</script>
+{% endblock %}

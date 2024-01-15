@@ -1,0 +1,157 @@
+{% extends 'pages/visiteur/themes_visiteur/base.html.twig' %}
+
+{% block title %} À Propos de Soninkara Connect {% endblock %}
+
+{% block body %}
+    <!-- Section À Propos -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 my-3 pt-5">
+                    <h1 class="text-center ">À Propos de Soninkara Connect</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ asset('img/About/about.jpg') }}" class="img-fluid" alt="Image À Propos">
+                </div>
+                <div class="col-md-6">
+                    <p>Soninkara Connect est bien plus qu'un service d'expédition de colis. Nous sommes votre partenaire de confiance pour des livraisons rapides, sécurisées et sans tracas vers la France, la Mauritanie et le Sénégal.</p>
+                    <p>Notre engagement envers la satisfaction client, notre transparence et fiabilité font de nous le choix idéal pour vos besoins d'expédition.</p>
+                    <p>Confiez-nous vos envois, et nous les livrerons non seulement à temps, mais avec le plus grand soin et professionnalisme.</p>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h2>Nos Valeurs</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item">Engagement envers la satisfaction client</li>
+                        <li class="list-group-item">Transparence et fiabilité</li>
+                        <li class="list-group-item">Livraison rapide et sécurisée</li>
+                        <li class="list-group-item">Service client exceptionnel</li>
+                    </ul>
+                </div>
+            </div>
+            {# <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <h2>Suivez-nous sur les réseaux sociaux</h2>
+                    <p>Restez connecté avec nous pour les dernières mises à jour et offres spéciales.</p>
+                </div>
+            </div>
+            <div class="row mt-2 justify-content-center">
+                <div class="col-md-2 text-center">
+                    <a href="#" class="btn btn-outline-primary btn-social mx-1"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#" class="btn btn-outline-primary btn-social mx-1"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#" class="btn btn-outline-primary btn-social mx-1"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div> #}
+        </div>
+    </section>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .about-section {
+            padding: 20px 0;
+        }
+
+        .wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background-container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .bg-1 {
+            flex: 1;
+            background-color: rgb(180, 243, 175);
+        }
+
+        .bg-2 {
+            flex: 1;
+            background-color: rgb(163, 236, 240);
+        }
+
+        .about-container {
+            width: 85%;
+            min-height: 80vh;
+            position: absolute;
+            background-color: white;
+            box-shadow: 24px 24px 30px #6d8dad;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            border-radius: 5px;
+            flex-direction: row;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            width: 500px;
+            height: 500px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .text-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            font-size: 22px;
+        }
+
+        h1 {
+        padding-top: 40px; 
+        }
+
+        .text-container h1 {
+            font-size: 70px;
+            padding: 20px 0px;
+        }
+
+        .text-container a {
+            text-decoration: none;
+            padding: 12px;
+            margin: 50px 0px;
+            background-color: rebeccapurple;
+            border: 2px solid transparent;
+            color: white;
+            border-radius: 5px;
+            transition: .3s all ease;
+        }
+
+        .text-container a:hover {
+            background-color: transparent;
+            color: black;
+            border: 2px solid rebeccapurple;
+        }
+
+    </style>
+{% endblock %}

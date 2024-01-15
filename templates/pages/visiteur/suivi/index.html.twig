@@ -1,0 +1,109 @@
+{% extends "pages/visiteur/themes_visiteur/base.html.twig" %}
+
+{% block title %}Page de suivi - Soninkara Connect{% endblock %}
+
+{% block stylesheets %}
+<style>
+/* Styles pour le conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles pour le titre principal */
+h1 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Styles pour le formulaire de recherche de colis */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+/* Styles pour le tableau d'historique des statuts */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-4 mb-4">Suivi de Colis</h1>
+
+    <!-- Formulaire de recherche de colis -->
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <h2>Bienvenue chez Soninkara Connect!</h2>
+            <p>Découvrez la simplicité du suivi de colis. Entrez simplement votre numéro de suivi ci-dessous pour obtenir les dernières informations sur votre colis.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <form action="{{ path('suivi.colis') }}" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="numero_suivi" placeholder="Numéro de suivi">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tableau affichant l'historique des statuts -->
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Historique des Statuts</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date et Heure</th>
+                        <th>Statut</th>
+                        <th>Localisation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for statut in historiqueStatuts %}
+                        <tr>
+                            <td>{{ statut.date|date('d/m/Y H:i') }}</td>
+                            <td>{{ statut.statut }}</td>
+                            {% if statut.localisation is defined %}
+                                <td>{{ statut.localisation }}</td>
+                            {% else %}
+                                <td>Localisation non disponible</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% for flashMessage in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'pages/visiteur/themes_visiteur/base.html.twig' %}
+
+{% block title %}Formulaire d'Envoi de Colis{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/reservation.css') }}">
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <h1 class="text-center">Formulaire d'Envoi de Colis</h1>
+        
+        <!-- Barre de progression -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Expéditeur"></div>
+            <div class="progress-step" data-title="Destinataire"></div>
+            <div class="progress-step" data-title="Tarifs"></div>
+            <div class="progress-step" data-title="Paiement"></div>
+        </div>
+
+        <div class="form-steps">
+            <!-- Étape Expéditeur -->
+            <div class="form-step form-step-active">
+                {{ form_row(form.nom, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.nom) }}
+                {{ form_row(form.prenom, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.prenom) }}
+                {{ form_row(form.numero, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.numero) }}
+                {{ form_row(form.adresse, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.adresse) }}
+                {{ form_row(form.pays, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.pays) }}
+            </div>
+
+            <!-- Étape Destinataire -->
+            <div class="form-step">
+                {{ form_row(form.nomDest, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.nomDest) }}
+                {{ form_row(form.prenomDest, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.prenomDest) }}
+                {{ form_row(form.numeroDest, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.numeroDest) }}
+                {{ form_row(form.adresseDest, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.adresseDest) }}
+                {{ form_row(form.paysDest, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.paysDest) }}
+                {{ form_row(form.typeEmballage, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.typeEmballage) }}
+                {{ form_row(form.weight, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.weight) }}
+            </div>
+
+<!-- Étape Tarifs (cachée initialement) -->
+<div class="form-step" id="tarifEstimeStep" style="display: none;">
+    <div class="form-group">
+        {{ form_label(form.tarifEstime) }}
+        {{ form_widget(form.tarifEstime, {'attr': {'id': 'tarifEstimeDisplay', 'disabled': 'disabled'}}) }}
+    </div>
+</div>
+
+
+            <!-- Étape Paiement -->
+            <div class="form-step">
+                {{ form_row(form.moyenPaiement, {'attr': {'class': 'input-group'}}) }}
+
+                {% if form.moyenPaiement.vars.value == 'En ligne (PayPal)' %}
+                    {{ form_row(form.emailPaypal, {'attr': {'class': 'input-group'}}) }}
+                    {{ form_errors(form.emailPaypal) }}
+                {% elseif form.moyenPaiement.vars.value == '
+                En ligne (Carte bancaire)' %}
+                {{ form_row(form.numeroCarte, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.numeroCarte) }}
+                {{ form_row(form.dateExpiration, {'attr': {'class': 'input-group'}}) }}
+                {{ form_errors(form.dateExpiration) }}
+                {% endif %}
+            </div>
+            </div>
+
+            <div class="btns-group">
+                <button type="button" class="btn btn-prev" onclick="prevStep()">Précédent</button>
+                <button type="button" class="btn btn-next" onclick="nextStep()">Suivant</button>
+                <button type="submit" id="submitBtn" class="btn btn-next">Soumettre</button>
+            </div>
+{{ form_end(form) }}
+{% endblock %}
+
+
+{% block javascripts %}
+   <script>
+    function showStep(stepIndex) {
+        const formSteps = document.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.progress-step');
+        const submitBtn = document.getElementById('submitBtn');
+
+        formSteps.forEach((step, index) => {
+            step.style.display = index === stepIndex ? 'block' : 'none';
+        });
+
+        progressSteps.forEach((progressStep, index) => {
+            progressStep.classList.toggle('progress-step-active', index <= stepIndex);
+        });
+
+        // Activer le bouton de soumission uniquement à la dernière étape
+        if (stepIndex === formSteps.length - 1) {
+            submitBtn.style.display = 'block';
+        } else {
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    function prevStep() {
+        const formSteps = document.querySelectorAll('.form-step');
+        let currentStepIndex = Array.from(formSteps).findIndex(step => step.style.display === 'block');
+        const prevStepIndex = Math.max(currentStepIndex - 1, 0);
+        showStep(prevStepIndex);
+    }
+
+    function nextStep() {
+        const formSteps = document.querySelectorAll('.form-step');
+        let currentStepIndex = Array.from(formSteps).findIndex(step => step.style.display === 'block');
+
+        // Vérifier si l'utilisateur a sélectionné un moyen de paiement avant de passer à la dernière étape
+        if (currentStepIndex === formSteps.length - 2) {
+            const moyenPaiement = document.querySelector('#reservation_colis_moyenPaiement').value;
+            if (!moyenPaiement) {
+                alert('Veuillez sélectionner un moyen de paiement.');
+                return;
+            }
+        }
+
+        const nextStepIndex = Math.min(currentStepIndex + 1, formSteps.length - 1);
+        showStep(nextStepIndex);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showStep(0);
+        document.querySelector('#reservation_colis_moyenPaiement').addEventListener('change', updatePaymentFields);
+    });
+
+    function updatePaymentFields() {
+        const paymentChoice = document.querySelector('#reservation_colis_moyenPaiement').value;
+        const paypalFields = document.querySelector('.paypal-fields');
+        const cardFields = document.querySelector('.card-fields');
+
+        if (paypalFields) paypalFields.style.display = paymentChoice === 'En ligne (PayPal)' ? 'block' : 'none';
+        if (cardFields) cardFields.style.display = paymentChoice === 'En ligne (Carte bancaire)' ? 'block' : 'none';
+    }
+    
+</script>
+
+{% endblock %}

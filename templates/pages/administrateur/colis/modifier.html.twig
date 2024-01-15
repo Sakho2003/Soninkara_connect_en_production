@@ -1,0 +1,29 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Modifier la réservation{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Modifier la réservation #{{ reservation.id }}</h1>
+        
+        {{ form_start(form) }}
+            <div class="card mb-3">
+                <div class="card-body">
+                    {{ form_widget(form) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <a href="{{ path('app_colis') }}" class="btn btn-secondary">Retour à la liste</a>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

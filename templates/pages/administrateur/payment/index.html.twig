@@ -1,0 +1,37 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Gestion des Paiements{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-4">Administration des Paiements</h1>
+
+    <!-- Ajouter ici la logique et les éléments d'interface utilisateur pour la gestion des paiements -->
+
+    <p>Cette section est destinée à la gestion et à la surveillance des transactions de paiement.</p>
+
+    <!-- Exemple de tableau pour afficher les transactions -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Transaction</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <!-- Autres colonnes selon les besoins -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boucle sur les transactions pour les afficher -->
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.montant }}</td>
+                    <td>{{ transaction.date | date('d/m/Y') }}</td>
+                    <td>{{ transaction.statut }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'pages/visiteur/themes_visiteur/base.html.twig' %}
+
+{% block title %} En attente de la vérification du compte par e-mail {% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container mt-5 pt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    {# <img src="{{ asset('img/mail.png') }}" alt="Email Verification Image" class="img-fluid mb-4"> #}
+                    <h1 class="display-4">En attente de vérification...</h1>
+                    <p class="lead">Un e-mail vous a été envoyé pour la vérification de votre compte.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

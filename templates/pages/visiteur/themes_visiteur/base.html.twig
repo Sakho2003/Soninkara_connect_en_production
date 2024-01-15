@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>{% block title %}Soninkare-Connect{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Flex:opsz,wght@8..144,100;8..144,300;8..144,500;8..144,700;8..144,900&display=swap"rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+
+    {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN6b1pCPV8L4uaoxHdBr8FQF7JqH8" crossorigin="anonymous"> #}
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    {% block stylesheets %}{% endblock %}
+
+    {% block header %}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    {% endblock %}
+
+</head>
+
+<body>
+   {# <nav>
+        <a href="{{ path('accueil')}}" class="nav-icon" aria-label="homepage" aria-current="page">
+            <img src="{{ asset('img/plane.png') }}" alt="chat icon" />
+            <span>Soni Connect</span>
+        </a>
+
+        <div class="main-navlinks">
+            <button type="button" class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navlinks-container">
+                <a href="{{ path('accueil') }}" aria-current="page">Accueil</a>
+                <a href="{{ path('a_propos') }}">A-propos</a>
+                <a href="{{ path('envoie.commande') }}">Envoyer un colis</a>
+                <a href="{{ path('suivi.colis') }}">Suivre un colis</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+            </div>
+        </div>
+
+    <div class="nav-authentication">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <!-- Utilisateur connecté -->
+                <a href="" class="user-toggler" aria-label="Accéder à l'espace privé" />
+                <div class="sign-btns">
+                    <a href="{{ path('logout') }}">
+                        <button type="button">Se déconnecter</button>
+                    </a>
+                </div>
+            {% else %}
+                <!-- Utilisateur non connecté -->
+                <a href="{{ path('login') }}" class="user-toggler" aria-label="Page de connexion">
+                    <img src="{{ asset('img/user.svg') }}" alt="icône utilisateur" />
+                </a>
+                <div class="sign-btns">
+                    <a href="{{ path('login') }}">
+                        <button type="button">Connexion</button>
+                    </a>
+                    <a href="{{ path('register') }}">
+                        <button type="button">Inscription</button>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </nav> #}
+
+
+<nav>
+    <a href="{{ path('accueil')}}" class="nav-icon" aria-label="homepage" aria-current="page">
+        <img src="{{ asset('img/plane.png') }}" alt="chat icon" />
+        <span>Soni Connect</span>
+    </a>
+
+    <div class="main-navlinks">
+        <button type="button" class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="navlinks-container">
+            <a href="{{ path('accueil') }}" aria-current="page">Accueil</a>
+            <a href="{{ path('a_propos') }}">A-propos</a>
+            <a href="{{ path('envoie.commande') }}">Envoyer un colis</a>
+            <a href="{{ path('suivi.colis') }}">Suivre un colis</a>
+            <a href="{{ path('app_contact') }}">Contact</a>
+
+
+<div class="nav-authentication">
+    <div class="user-toggler">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <!-- Utilisateur connecté -->
+            <div class="sign-btns">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <!-- Lien pour l'espace admin -->
+                    <a href="{{ path('admin') }}">
+                        <button type="button">Espace Admin</button>
+                    </a>
+                {% endif %}
+                <a href="{{ path('admin') }}">
+                    <button type="button">Espace Privé</button>
+                </a>
+                <a href="{{ path('logout') }}">
+                    <button type="button">Se déconnecter</button>
+                </a>
+            </div>
+        {% else %}
+            <!-- Utilisateur non connecté -->
+            <div class="sign-btns">
+                <a href="{{ path('login') }}">
+                    <button type="button">Connexion</button>
+                </a>
+                <a href="{{ path('register') }}">
+                    <button type="button">Inscription</button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>        </div>
+    </div>
+
+
+    {# <div class="nav-authentication">
+        <div class="user-toggler">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <!-- Utilisateur connecté -->
+                <a href="" aria-label="Accéder à l'espace privé" />
+            {% else %}
+                <!-- Utilisateur non connecté -->
+                <a href="{{ path('login') }}" aria-label="Page de connexion">
+                    <!-- Insérez ici l'icône de connexion -->
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="sign-btns">
+        <a href="{{ path('login') }}">
+            <button type="button">Connexion</button>
+        </a>
+        <a href="{{ path('register') }}">
+            <button type="button">Inscription</button>
+        </a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        
+            <a href="{{ path('logout') }}">
+                <button type="button">Se déconnecter</button>
+            </a>
+        {% endif %}
+    </div> #}
+</nav>
+
+
+
+
+{% block body %}{% endblock %}
+
+    <footer class="footer-distributed">
+        <div class="footer-left">
+            <h3>Soni<span>Connect</span></h3>
+            <p class="footer-links">
+                <a href="{{ path('accueil') }}">Accueil</a>
+                |
+                <a href="{{ path('accueil') }}">À propos</a>
+                |
+                <a href="{{ path('accueil') }}">Envoyer un colis</a>
+                |
+                <a href="{{ path('accueil') }}">Boutique</a>
+                |
+                <a href="{{ path('accueil') }}">Contact</a>
+            </p>
+            <p class="footer-company-name">© 2023 Soni Connect</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>SAKHO</span> Abdarahmane</p>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+331 67 84 82 48</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:envoiecolis@soninkaraconnect.com"></a>envoiecolis@soninkaraconnect.com</p>
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>À propos de l'entreprise</span>
+            Découvrez notre service de transport fiable et rapide vers la France, la Mauritanie et le Sénégal.
+
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+<script src="{{ asset('js/script.js') }}"></script>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,65 @@
+{% extends "pages/visiteur/themes_visiteur/base.html.twig" %}
+
+{% block title %}Page de contact - Soninkara Connect{% endblock %}
+
+{% block description %}Contactez Soninkara Connect pour toute question ou suggestion sur nos services d'envoi de colis{% endblock %}
+
+{% block keywords %}Soninkara Connect, Envoi de colis, Contact{% endblock %}
+
+{% block stylesheet %}
+<!-- Ici, vous pouvez inclure vos styles CSS supplémentaires si nécessaire -->
+{% endblock %}
+
+{% block body %}
+<section id="section-wrapper">
+    <div class="box-wrapper pt-5">
+        <div class="info-wrap">
+            <h2 class="info-title ">Informations de contact</h2>
+            <h3 class="info-sub-title">Remplissez le formulaire et notre équipe vous répondra dans les 24 heures</h3>
+            <ul class="info-details">
+                <li><i class="fas fa-phone-alt"></i><span>Téléphone :</span> <a href="tel:+0776646347">0776646347</a></li>
+                <li><i class="fas fa-paper-plane"></i><span>Email :</span> <a href="mailto:envoiecolis@soninkaraconnect.com">envoiecolis@soninkaraconnect.com</a></li>
+                <li><i class="fas fa-globe"></i><span>Site Web :</span> <a href="#">Soninkaraconnect.com</a></li>
+            </ul>
+            <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+        <div class="form-wrap">
+            {{ form_start(form) }}
+                <h2 class="form-title">Envoyez-nous un message</h2>
+                <div class="form-fields">
+                <div class="form-group">
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom, {'attr': {'class': 'input-style'}}) }}
+                    {{ form_errors(form.nom) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.prenom) }}
+                    {{ form_widget(form.prenom, {'attr': {'class': 'input-style'}}) }}
+                    {{ form_errors(form.prenom) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'input-style'}}) }}
+                    {{ form_errors(form.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.telephone) }}
+                    {{ form_widget(form.telephone, {'attr': {'class': 'input-style'}}) }}
+                    {{ form_errors(form.telephone) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.message) }}
+                    {{ form_widget(form.message, {'attr': {'class': 'textarea-style'}}) }}
+                    {{ form_errors(form.message) }}
+                </div>
+                </div>
+                <input type="submit" value="Envoyer le message" class="submit-button">
+            {{ form_end(form) }}
+        </div>
+    </div>
+</section>
+{% endblock %}

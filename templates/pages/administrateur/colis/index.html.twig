@@ -1,0 +1,64 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Liste des réservations{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Liste des réservations</h1>
+
+        <!-- Bouton d'ajout d'une nouvelle réservation -->
+        <a href="{{ path('app_colis_nouveau') }}" class="btn btn-success mb-3">Ajouter une réservation</a>
+
+        {% for resa in reservations %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    Réservation #{{ resa.id }}
+                    <!-- Boutons d'action -->
+                    <div class="float-right">
+                        <a href="{{ path('app_colis_modifier', {'id': resa.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{{ path('app_colis_supprimer', {'id': resa.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 class="card-title">Informations Expéditeur</h5>
+                            <p class="card-text">Nom: {{ resa.nom }}</p>
+                            <p class="card-text">Prénom: {{ resa.prenom }}</p>
+                            <p class="card-text">Numéro: {{ resa.numero }}</p>
+                            <p class="card-text">Adresse: {{ resa.adresse }}</p>
+                            <p class="card-text">Pays: {{ resa.pays }}</p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5 class="card-title">Informations Destinataire</h5>
+                            <p class="card-text">Nom: {{ resa.nomDest }}</p>
+                            <p class="card-text">Prénom: {{ resa.prenomDest }}</p>
+                            <p class="card-text">Numéro: {{ resa.numeroDest }}</p>
+                            <p class="card-text">Adresse: {{ resa.adresseDest }}</p>
+                            <p class="card-text">Pays: {{ resa.paysDest }}</p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5 class="card-title">Détails de Paiement et Autres Informations</h5>
+                            <p class="card-text">Moyen de Paiement: {{ resa.moyenPaiement }}</p>
+                            <p class="card-text">Frais d'expédition: {{ resa.deliveryCost }}</p>
+                            <p class="card-text">Poids: {{ resa.weight }} kg</p>
+                            <p class="card-text">Numéro de Suivi: {{ resa.numeroSuivi }}</p>
+                            <p class="card-text">Date de Réservation: {{ resa.reservationDate ? resa.reservationDate|date('Y-m-d H:i:s') : '' }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+

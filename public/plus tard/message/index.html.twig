@@ -1,0 +1,25 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+    <h1>Messages de Contact</h1>
+    
+    {# Vérification de l'existence de messages. #}
+    {% if messages is not empty %}
+        <div class="messages">
+            {# Boucle sur chaque message et affichage de ses détails. #}
+            {% for message in messages %}
+                <div class="message">
+                    <p><strong>Nom :</strong> {{ message.nom }}</p>
+                    <p><strong>Prénom :</strong> {{ message.prenom }}</p>
+                    <p><strong>Email :</strong> {{ message.email }}</p>
+                    <p><strong>Téléphone :</strong> {{ message.telephone }}</p>
+                    <p><strong>Message :</strong> {{ message.message }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun message trouvé.</p>
+    {% endif %}
+{% endblock %}

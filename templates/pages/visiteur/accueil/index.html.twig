@@ -1,0 +1,159 @@
+{% extends 'pages/visiteur/themes_visiteur/base.html.twig' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block body %}
+      <section class="step-wizard">
+        <ul class="step-wizard-list">
+            <li class="step-wizard-item">
+                <span class="progress-count">1</span>
+                <span class="progress-label">Créer un compte</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">2</span>
+                <span class="progress-label">Vérifier</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">3</span>
+                <span class="progress-label">Resérver votre envoie</span>
+            </li>
+            <li class="step-wizard-item">
+                <span class="progress-count">4</span>
+                <span class="progress-label">En attente de traitement</span>
+            </li>
+        </ul>
+    </section>
+     
+    <!-- Hero section -->
+    <header>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-5 my-3 order-md-2">
+                    <img src="{{ asset('img/1125.png') }}" class="img-fluid" alt="Image d'accueil">
+                </div>
+                <div class="col-md-7 my-3 order-md-1 d-flex flex-column justify-content-evenly align-items-center">
+                    <div>
+                        <h1>Bienvenue sur Notre Service de Transport de Colis</h1>
+                    </div>
+                    <div>
+                        <h1>Soninkara_Connect.</h1>
+                        <p>Découvrez notre service de transport fiable et rapide vers la France, la Mauritanie et le Sénégal.</p>
+                    </div>
+                    <div>
+                      <p>Pour envoyer votre colis, connectez-vous ou créez un compte, puis accédez à la page de réservation de colis.</p>
+                      <a href="{{ path('envoie.commande')}}" class="btn btn-primary btn-lg shadow">Envoyer Votre Colis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    {# <!-- Section de présentation -->
+    <div class="container mt-5">
+        <div class="presentation-service">
+            <h1>Bienvenue sur Notre Service de Livraison</h1>
+
+            <p>Nous sommes dédiés à vous offrir une expérience d'expédition exceptionnelle. Faites-nous confiance pour livrer vos colis en toute sécurité et à temps.</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ asset('img/1125.jpg') }}" class="img-fluid" alt="Image 1">
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('chemin/vers/votre/image2.jpg') }}" class="img-fluid" alt="Image 2">
+                </div>
+            </div>
+
+            <div class="garanties mt-4">
+                <h2 class="text-primary">Garanties</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Garantie de remboursement : Si votre colis est perdu ou endommagé, nous vous rembourserons intégralement le prix du colis.</li>
+                    <li class="list-group-item">Garantie de livraison à temps : Nous nous engageons à livrer votre colis dans les délais prévus. Si votre colis n'est pas livré à temps, nous vous rembourserons les frais de livraison.</li>
+                    <li class="list-group-item">Garantie de satisfaction : Nous sommes convaincus que vous serez pleinement satisfait de notre service. Si ce n'est pas le cas, nous vous rembourserons le prix du colis et les frais de livraison.</li>
+                </ul>
+            </div>
+
+            <p>Nous comprenons l'importance de bâtir une relation de confiance avec nos utilisateurs. C'est pourquoi notre équipe est dévouée à assurer une expérience d'expédition sans tracas, en mettant l'accent sur la transparence, la fiabilité et le service client exceptionnel.</p>
+
+            <p>Faites-nous confiance pour prendre soin de vos envois avec le plus grand soin et professionnalisme. Votre satisfaction est notre priorité absolue.</p>
+        </div>
+    </div> #}
+
+
+    <!-- Section de suivi -->
+    <section class="tracking-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-5 my-3 order-md-2">
+                    <img src="{{ asset('img/register/register.png') }}" class="img-fluid" alt="Image d'accueil">
+                </div>
+                <div class="col-md-7 my-3 order-md-1 d-flex flex-column justify-content-evenly align-items-center">
+                    <div>
+                        <h1>Suivi de Colis</h1>
+                    </div>
+                    <div>
+                        <p>Entrez le numéro de suivi de votre colis pour obtenir des informations en temps réel sur son emplacement et sa livraison.</p>
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-primary btn-lg shadow">Suivre vorte Colis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const progressBar = document.querySelector('.step-wizard-list');
+    const steps = document.querySelectorAll('.step-wizard-item');
+
+    // Fonction pour mettre à jour la barre de progression
+    function updateProgressBar() {
+        const totalSteps = steps.length;
+        const currentStep = Array.from(steps).findIndex(step => step.classList.contains('current-item')) + 1;
+        const progressPercentage = (currentStep / totalSteps) * 100;
+
+        progressBar.style.width = `${progressPercentage}%`;
+    }
+
+    // Appeler la fonction initiale
+    updateProgressBar();
+
+    // Ajouter un gestionnaire d'événement pour chaque étape
+    steps.forEach((step, index) => {
+        step.addEventListener('click', function () {
+            // Réinitialiser toutes les étapes
+            steps.forEach(s => s.classList.remove('current-item'));
+
+            // Définir l'étape actuelle
+            steps[index].classList.add('current-item');
+
+            // Mettre à jour la barre de progression
+            updateProgressBar();
+        });
+    });
+
+    // Animation automatique des étapes
+    let currentStep = 1;
+    setInterval(() => {
+        // Réinitialiser toutes les étapes
+        steps.forEach(s => s.classList.remove('current-item'));
+
+        // Définir l'étape actuelle
+        steps[currentStep - 1].classList.add('current-item');
+
+        // Mettre à jour la barre de progression
+        updateProgressBar();
+
+        // Passer à l'étape suivante
+        currentStep = (currentStep % steps.length) + 1;
+    }, 2000); // Réglez l'intervalle selon votre préférence
+});
+
+</script>
+
+
+{% endblock %}

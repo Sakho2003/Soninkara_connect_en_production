@@ -1,0 +1,23 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block title %}Supprimer la réservation{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Supprimer la réservation #{{ reservation.id }}</h1>
+        <p>Êtes-vous sûr de vouloir supprimer cette réservation ? Cette action est irréversible.</p>
+
+        <div class="text-center">
+            <form method="post" action="{{ path('app_colis_supprimer', {'id': reservation.id}) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reservation.id) }}">
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <a href="{{ path('app_colis') }}" class="btn btn-secondary">Annuler</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
