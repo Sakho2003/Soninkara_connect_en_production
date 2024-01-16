@@ -33,7 +33,6 @@ class ContactController extends AbstractController
             // Ajout d'un message flash pour informer l'utilisateur
             $this->addFlash('success', 'Votre message a bien été envoyé.');
 
-            // Redirection pour éviter la resoumission du formulaire
             return $this->redirectToRoute('app_contact');
         }
 

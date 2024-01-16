@@ -47,7 +47,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message: 'Le pays ne doit pas être vide.')]
     private ?string $pays = null;
 
-        /**
+    /**
      * @var string The hashed password
      */
     #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
@@ -130,7 +130,7 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Si vous stockez des données temporaires ou sensibles sur l'utilisateur, effacez-les ici
+        //  données temporaires ou sensibles sur l'utilisateur, effacez
     }
 
     public function getNom(): ?string

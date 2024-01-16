@@ -33,54 +33,6 @@
 </head>
 
 <body>
-   {# <nav>
-        <a href="{{ path('accueil')}}" class="nav-icon" aria-label="homepage" aria-current="page">
-            <img src="{{ asset('img/plane.png') }}" alt="chat icon" />
-            <span>Soni Connect</span>
-        </a>
-
-        <div class="main-navlinks">
-            <button type="button" class="hamburger" aria-label="Toggle Navigation" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="navlinks-container">
-                <a href="{{ path('accueil') }}" aria-current="page">Accueil</a>
-                <a href="{{ path('a_propos') }}">A-propos</a>
-                <a href="{{ path('envoie.commande') }}">Envoyer un colis</a>
-                <a href="{{ path('suivi.colis') }}">Suivre un colis</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
-            </div>
-        </div>
-
-    <div class="nav-authentication">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <!-- Utilisateur connecté -->
-                <a href="" class="user-toggler" aria-label="Accéder à l'espace privé" />
-                <div class="sign-btns">
-                    <a href="{{ path('logout') }}">
-                        <button type="button">Se déconnecter</button>
-                    </a>
-                </div>
-            {% else %}
-                <!-- Utilisateur non connecté -->
-                <a href="{{ path('login') }}" class="user-toggler" aria-label="Page de connexion">
-                    <img src="{{ asset('img/user.svg') }}" alt="icône utilisateur" />
-                </a>
-                <div class="sign-btns">
-                    <a href="{{ path('login') }}">
-                        <button type="button">Connexion</button>
-                    </a>
-                    <a href="{{ path('register') }}">
-                        <button type="button">Inscription</button>
-                    </a>
-                </div>
-            {% endif %}
-        </div>
-    </nav> #}
-
-
 <nav>
     <a href="{{ path('accueil')}}" class="nav-icon" aria-label="homepage" aria-current="page">
         <img src="{{ asset('img/plane.png') }}" alt="chat icon" />
@@ -100,8 +52,8 @@
             <a href="{{ path('envoie.commande') }}">Envoyer un colis</a>
             <a href="{{ path('suivi.colis') }}">Suivre un colis</a>
             <a href="{{ path('app_contact') }}">Contact</a>
-
-
+        </div>
+    </div>
 <div class="nav-authentication">
     <div class="user-toggler">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -113,7 +65,7 @@
                         <button type="button">Espace Admin</button>
                     </a>
                 {% endif %}
-                <a href="{{ path('admin') }}">
+                <a href="{{ path('espace_prive') }}">
                     <button type="button">Espace Privé</button>
                 </a>
                 <a href="{{ path('logout') }}">
@@ -131,39 +83,10 @@
                 </a>
             </div>
         {% endif %}
-    </div>
-</div>        </div>
-    </div>
 
+</div>        
+</div>
 
-    {# <div class="nav-authentication">
-        <div class="user-toggler">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <!-- Utilisateur connecté -->
-                <a href="" aria-label="Accéder à l'espace privé" />
-            {% else %}
-                <!-- Utilisateur non connecté -->
-                <a href="{{ path('login') }}" aria-label="Page de connexion">
-                    <!-- Insérez ici l'icône de connexion -->
-                </a>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="sign-btns">
-        <a href="{{ path('login') }}">
-            <button type="button">Connexion</button>
-        </a>
-        <a href="{{ path('register') }}">
-            <button type="button">Inscription</button>
-        </a>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        
-            <a href="{{ path('logout') }}">
-                <button type="button">Se déconnecter</button>
-            </a>
-        {% endif %}
-    </div> #}
 </nav>
 
 
@@ -209,13 +132,13 @@
             Découvrez notre service de transport fiable et rapide vers la France, la Mauritanie et le Sénégal.
 
             </p>
-            <div class="footer-icons">
+            {# <div class="footer-icons">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-linkedin"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-youtube"></i></a>
-            </div>
+            </div> #}
         </div>
     </footer>
 

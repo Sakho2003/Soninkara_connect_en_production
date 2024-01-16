@@ -26,7 +26,7 @@ class ColisController extends AbstractDashboardController
         $reservations = $reservationRepository->findAll();
 
         return $this->render('pages/administrateur/colis/index.html.twig', [
-            'reservations' => $reservations, // Correction ici : 'reservation' remplacé par 'reservations'
+            'reservations' => $reservations,
         ]);
     }
 
@@ -38,7 +38,6 @@ class ColisController extends AbstractDashboardController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
-            // Assigner la date de réservation si elle n'est pas fournie
             if (!$reservation->getReservationDate()) {
                 $reservation->setReservationDate(new \DateTime());
             }
@@ -54,7 +53,7 @@ class ColisController extends AbstractDashboardController
     
         return $this->render('pages/administrateur/colis/nouveau.html.twig', [
             'form' => $form->createView(),
-            'reservation' => $reservation, // Ajouter cette ligne pour passer la variable au template
+            'reservation' => $reservation,
         ]);
     }
     

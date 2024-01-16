@@ -136,11 +136,11 @@ class ReservationColisType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('tarifEstime', NumberType::class, [
-                'label' => 'Tarif estimé (€)',
-                'mapped' => false,
-                'disabled' => true,
-            ])
+            // ->add('tarifEstime', NumberType::class, [
+            //     'label' => 'Tarif estimé (€)',
+            //     'mapped' => false,
+            //     'disabled' => true,
+            // ])
             ->add('moyenPaiement', ChoiceType::class, [
                 'choices' => [
                     'En espèces à la livraison' => 'En espèces à la livraison',
@@ -155,15 +155,6 @@ class ReservationColisType extends AbstractType
             ])
             
             
-            // ->add('deliveryCost', MoneyType::class, [
-            //     'label' => 'Coût de livraison',
-            //     'currency' => 'EUR', // Spécifiez la devise, par exemple 'EUR' pour les euros
-            //     'divisor' => 100, // Si vous stockez le montant en cents
-            //     'attr' => [
-            //         'class' => 'custom-css-class', // Ajoutez des classes CSS personnalisées
-            //     ],
-            //     // Autres options spécifiques au champ MoneyType...
-            // ])
             ;
     }
 

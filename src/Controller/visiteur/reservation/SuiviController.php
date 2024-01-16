@@ -15,14 +15,12 @@ class SuiviController extends AbstractController
     private $colisRepository;
     private $suiviColisRepository;
 
-    // Injection des dépendances pour les repositories Colis et SuiviColis
     public function __construct(ColisRepository $colisRepository, SuiviColisRepository $suiviColisRepository)
     {
         $this->colisRepository = $colisRepository;
         $this->suiviColisRepository = $suiviColisRepository;
     }
 
-    // Route pour afficher la page de suivi de colis
     #[Route('/suivi-colis', name: 'suivi.colis', methods: ['GET', 'POST'])]
     public function suiviColis(Request $request): Response
     {
@@ -45,7 +43,6 @@ class SuiviController extends AbstractController
                     $historiqueStatuts[] = [
                         'statut' => $suivi->getStatut(),
                         'date' => $suivi->getDateHeureSuivi(),
-                        // Ajouter d'autres informations si nécessaire
                     ];
                 }
             } else {
@@ -54,7 +51,6 @@ class SuiviController extends AbstractController
             }
         }
 
-        // Rendu de la page Twig avec les données de suivi
         return $this->render('pages/visiteur/suivi/index.html.twig', [
             'historiqueStatuts' => $historiqueStatuts,
             'numeroSuivi' => $numeroSuivi,
@@ -79,13 +75,12 @@ class SuiviController extends AbstractController
                     $historiqueStatuts[] = [
                         'statut' => $suivi->getStatut(),
                         'date' => $suivi->getDateHeureSuivi()->format('Y-m-d H:i:s'),
-                        // Ajouter d'autres informations si nécessaire
+                // la localisation a mettre plus tard 
                     ];
                 }
             }
         }
 
-        // Retour des données au format JSON
         return $this->json($historiqueStatuts);
     }
 }

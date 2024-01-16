@@ -14,17 +14,14 @@ class TypeEmballage
     #[ORM\Column]
     private ?int $id = null;
 
-    // Champ pour le nom du type d'emballage
     #[ORM\Column(nullable: true)]
     #[Assert\NotBlank(message: 'Le champ nom ne doit pas être vide.')]
     private ?string $nom = null;
 
-    // Champ pour la description du type d'emballage
     #[ORM\Column(nullable: true)]
     #[Assert\NotBlank(message: 'Le champ description ne doit pas être vide.')]
     private ?string $description = null;
 
-    // Champ pour les recommandations spécifiques au type d'emballage
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $recommandations = null;
 

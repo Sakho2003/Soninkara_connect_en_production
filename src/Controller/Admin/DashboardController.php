@@ -35,19 +35,20 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToRoute('Réservations', 'fa fa-list', 'app_colis');
         yield MenuItem::linkToCrud('Réservations', 'fa fa-calendar', Reservation::class);
-
-
-        yield MenuItem::section('Gestion des Colis', 'fa fa-truck');
         yield MenuItem::linkToCrud('Liste des Colis', 'fa fa-list', Colis::class);
 
 
-        yield MenuItem::section('Gestion des Contact', 'fa fa-contact');        
-        yield MenuItem::linkToCrud('Messages', 'fa fa-envelope', Contact::class);
+        yield MenuItem::section('Gestion des Contact', 'fa fa-envelope');        
+        yield MenuItem::linkToCrud('Liste des Messages', 'fa fa-list', Contact::class);
 
 
-        // Exemple de code pour ajouter un menu de gestion des clients
         yield MenuItem::section('Gestion des Clients', 'fa fa-user');
         yield MenuItem::linkToCrud('Liste des Clients', 'fa fa-list', Client::class);
+        
+        yield MenuItem::section('navigation', 'fa fa-arrow-left');        
+        yield MenuItem::linkToUrl('Retourner au site', 'fa fa-arrow-left', '/');
+
+        // yield MenuItem::linkToCrud('Liste des Clients', 'fa fa-list', 'nouveau.client');
 
         // yield MenuItem::linkToRoute('Produits', 'fa fa-box', 'admin.produit.liste');
         // yield MenuItem::linkToRoute('Ajouter un produit', 'fa fa-plus', 'admin.boutique');
@@ -59,8 +60,8 @@ class DashboardController extends AbstractDashboardController
         // // yield MenuItem::linkToCrud('Ajouter une Image', 'fa fa-plus', 'App\Entity\Image', 'admin_upload_image');
 
         // Ajout de la gestion des paiements PayPal
-        yield MenuItem::section('Gestion des Paiements', 'fa fa-credit-card');
-        yield MenuItem::linkToRoute('Paiements PayPal', 'fa fa-paypal', 'admin_paiements');
+        // yield MenuItem::section('Gestion des Paiements', 'fa fa-credit-card');
+        // yield MenuItem::linkToRoute('Paiements PayPal', 'fa fa-paypal', 'admin_paiements');
 
 
     }

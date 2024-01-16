@@ -1,0 +1,264 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #032923;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f4d03f;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Animation du texte de bienvenue */
+section p {
+    font-size: 1.4rem;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Animation de fondu */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Style des boutons */
+button {
+    background-color: #032923;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: rgb(201, 166, 24);
+}
+
+/* Style pour les nouvelles classes block-btn et block-container */
+.block-btn {
+    background-color: #032923;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.block-btn:hover {
+    background-color: rgb(201, 166, 24);
+}
+
+.block-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Style pour les nouveaux block-item */
+.block-item {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.block-item p {
+    font-size: 1.1rem;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.box {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.box h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.6rem;
+}
+
+.box p, .box ul {
+    margin: 10px 0;
+    list-style: none;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.encore ul li {
+    list-style: none;
+}
+
+.box img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+/* Style pour les listes à puces dans les box */
+.box ul {
+    padding-left: 20px;
+}
+
+.box ul li {
+    margin-bottom: 10px;
+}
+
+/* Style pour les liens de navigation */
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #f4d03f;
+    color: #032923;
+}
+
+/* Style pour les titres de section */
+section h2 {
+    font-size: 2rem;
+    color: #032923;
+    margin-bottom: 15px;
+}
+
+/* Style pour les paragraphes de section */
+section p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Style pour la mise en forme de la section entière */
+section {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Style pour le bouton "Découvrir" */
+#soninkaraDetailsBtn {
+    background-color: #032923;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#soninkaraDetailsBtn:hover {
+    background-color: rgb(201, 166, 24);
+}
+
+/* Style pour le texte de la section "Soninkara Connect" */
+#soninkaraDetails {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Style pour les objectifs de l'application */
+#soninkaraDetails ul {
+    padding-left: 20px;
+}
+
+#soninkaraDetails ul li {
+    margin-bottom: 10px;
+}
+
+/* Style pour les fonctionnalités clés */
+#soninkaraDetails ul {
+    padding-left: 20px;
+}
+
+#soninkaraDetails ul li {
+    margin-bottom: 10px;
+}
+
+/* Style pour la vision à long terme */
+#soninkaraDetails p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Style pour le bouton "En savoir plus sur Soninkara Connect" */
+#soninkaraBtn {
+    background-color: #032923;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#soninkaraBtn:hover {
+    background-color: rgb(201, 166, 24);
+}

@@ -15,4 +15,21 @@ class AccueilController extends AbstractController
             'controller_name' => 'AccueilController',
         ]);
     }
+
+    #[Route('/espace-prive', name: 'espace_prive', methods: ['GET'])]
+    public function espacePrive(): Response
+    {
+        return $this->render('pages/visiteur/accueil/espace_prive.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
+    #[Route('/presentation', name: 'presentation', methods: ['GET'])]
+    public function presentation(): Response
+    {
+        return $this->render('pages/presentation/presentation.html.twig', [
+            'controller_name' => 'AccueilController',
+        ]);
+    }
+
 }

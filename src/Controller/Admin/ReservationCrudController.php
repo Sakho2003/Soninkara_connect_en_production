@@ -13,15 +13,13 @@ class ReservationCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        // Indique à EasyAdmin l'entité à gérer
         return Reservation::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        // Configure les champs à afficher dans l'interface CRUD
         return [
-            IdField::new('id')->hideOnForm(), // L'ID est caché dans le formulaire
+            IdField::new('id')->hideOnForm(), 
             TextField::new('nom', 'Nom du client'),
             TextField::new('prenom', 'Prénom du client'),
             TextField::new('numero', 'Numéro de téléphone'),
@@ -45,12 +43,9 @@ class ReservationCrudController extends AbstractCrudController
     #[Route('/admin/special-reservation-action', name: 'special_reservation_action')]
     public function specialReservationAction(): Response
     {
-        // Logique personnalisée pour une action spécifique
-        // Exemple : Récupérer toutes les réservations
+        // : Récupérer toutes les réservations
         $reservations = $this->reservationRepository->findAll();
 
-        // Vous pouvez ensuite traiter ces données et les renvoyer dans une vue
-        // Ici, un exemple simple renvoyant une réponse textuelle
         return new Response('Nombre de réservations : ' . count($reservations));
     }
 }

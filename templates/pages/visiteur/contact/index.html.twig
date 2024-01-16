@@ -6,10 +6,6 @@
 
 {% block keywords %}Soninkara Connect, Envoi de colis, Contact{% endblock %}
 
-{% block stylesheet %}
-<!-- Ici, vous pouvez inclure vos styles CSS supplémentaires si nécessaire -->
-{% endblock %}
-
 {% block body %}
 <section id="section-wrapper">
     <div class="box-wrapper pt-5">
@@ -21,11 +17,11 @@
                 <li><i class="fas fa-paper-plane"></i><span>Email :</span> <a href="mailto:envoiecolis@soninkaraconnect.com">envoiecolis@soninkaraconnect.com</a></li>
                 <li><i class="fas fa-globe"></i><span>Site Web :</span> <a href="#">Soninkaraconnect.com</a></li>
             </ul>
-            <ul class="social-icons">
+            {# <ul class="social-icons">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
+            </ul> #}
         </div>
         <div class="form-wrap">
             {{ form_start(form) }}

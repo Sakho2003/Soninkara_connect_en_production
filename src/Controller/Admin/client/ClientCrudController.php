@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\client;
 
 use App\Entity\Client;
 use App\Repository\ClientRepository;
@@ -38,5 +38,4 @@ class ClientCrudController extends AbstractCrudController
         ];
     }
 
-    // ...
 }

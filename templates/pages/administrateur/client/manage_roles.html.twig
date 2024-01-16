@@ -1,0 +1,27 @@
+{% extends '@EasyAdmin/default/crud/edit.html.twig' %}
+
+{% block page_title %}
+    {{ parent() }}
+    {% trans with {'%user%': user.username} %}
+        - Gérer les rôles de l'utilisateur : {{ '%user%' }}
+    {% endtrans %}
+{% endblock %}
+
+{% block body_id 'easyadmin-manage-roles' %}
+
+{% block content %}
+    <div class="form-horizontal">
+        {{ form_start(form) }}
+
+        <fieldset class="form-group">
+            <legend>Rôles de l'utilisateur</legend>
+            {{ form_widget(form.roles) }}
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{ 'Enregistrer les rôles'|trans }}</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

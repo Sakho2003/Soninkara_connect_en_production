@@ -29,5 +29,5 @@ services:
             $clientId: '%env(PAYPAL_CLIENT_ID)%'
             $clientSecret: '%env(PAYPAL_CLIENT_SECRET)%'
 
-    vich_uploader.property_mapping: # Assurez-vous que ce nom de service est correct
+    vich_uploader.property_mapping: 
         class: Vich\UploaderBundle\Mapping\PropertyMappingFactory

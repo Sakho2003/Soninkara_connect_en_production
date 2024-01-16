@@ -12,14 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Mailer\ValidationMailer;
 
 class CommandeController extends AbstractController
 {
     private $entityManager;
+    private $validationMailer;
 
-    public function __construct(EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ValidationMailer $validationMailer
+    ) {
         $this->entityManager = $entityManager;
+        $this->validationMailer = $validationMailer;
     }
 
     #[Route('/commande', name: 'envoie.commande')]
@@ -29,53 +35,59 @@ class CommandeController extends AbstractController
         $reservation = new Reservation();
         $form = $this->createForm(ReservationColisType::class, $reservation);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupérez les données du formulaire
             $weight = $reservation->getWeight();
-        
+
             // Calcul des frais de livraison pour la réservation
             $deliveryCost = $this->calculateDeliveryCost($reservation);
-        
+
             // Génération du numéro de suivi unique
             $trackingNumber = $this->generateTrackingNumber();
-        
+
             // Enregistrement de la réservation
             $reservation->setDeliveryCost($deliveryCost)
-                        ->setNumeroSuivi($trackingNumber)
-                        ->setReservationDate(new \DateTimeImmutable());
+                ->setNumeroSuivi($trackingNumber)
+                ->setReservationDate(new \DateTimeImmutable());
             $this->entityManager->persist($reservation);
-        
+
             // Création et association d'un Colis pour chaque réservation
             $colis = new Colis();
             $colis->setReservation($reservation);
             $colis->setDeliveryCost($deliveryCost);
             $colis->setWeight($weight);
             $colis->setMoyenPaiement($reservation->getMoyenPaiement());
-            $colis->setNumeroSuivi($trackingNumber); // Assurez-vous de définir le numéro de suivi ici
+            $colis->setNumeroSuivi($trackingNumber);
             $this->entityManager->persist($colis);
-        
+
             // Création d'une entrée de suivi pour chaque colis
             $suiviColis = new SuiviColis();
             $suiviColis->setStatut('Réservation effectuée')
-                       ->setDateHeureSuivi(new \DateTimeImmutable())
-                       ->setNumeroSuivi($trackingNumber)
-                       ->setColis($colis);
+                ->setDateHeureSuivi(new \DateTimeImmutable())
+                ->setNumeroSuivi($trackingNumber)
+                ->setColis($colis);
             $this->entityManager->persist($suiviColis);
-        
+
             $this->entityManager->flush();
-        
+
+            // Envoi de l'e-mail de validation si un client est associé à la réservation
+            
+            $client = $reservation->getClient();
+            if ($client !== null) {
+                $this->validationMailer->sendValidationEmail($client->getEmail());
+            }
+
             return $this->processPayment($reservation);
         }
-    
-        // Si le formulaire n'a pas été soumis ou n'est pas valide, continuez ici
-    
+
+
         // Calculer les tarifs pour l'affichage
         $deliveryCost = null;
         if ($form->isSubmitted() && !$form->isValid()) {
             $deliveryCost = $this->calculateDeliveryCost($reservation);
         }
-    
+
         return $this->render('pages/visiteur/commande/index.html.twig', [
             'form' => $form->createView(),
             'reservation' => $reservation,

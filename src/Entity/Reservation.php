@@ -89,15 +89,33 @@ class Reservation
     #[ORM\JoinColumn(name: "type_emballage_id", referencedColumnName: "id", nullable: true)]
     private ?TypeEmballage $typeEmballage = null;
 
-    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Colis::class)]
-    private Collection $colisRelation;
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: Colis::class, cascade: ["remove"])]
+    private Collection $colisRelation;    
 
     #[ORM\Column(type: "float", nullable: true)]
     private ?float $tarifEstime = null;
 
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'reservations')]
+    #[ORM\JoinColumn(name: 'client_id', referencedColumnName: 'id')]
+    private ?Client $client = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
+
+        return $this;
     }
 
 
@@ -336,13 +354,14 @@ public function setColisRelation(?Collection $colisRelation): self
 
     public function addColis(Colis $colis): self
     {
-        if (!$this->colis->contains($colis)) {
-            $this->colis[] = $colis;
+        if (!$this->colisRelation->contains($colis)) {
+            $this->colisRelation[] = $colis;
             $colis->setReservation($this);
         }
-
+    
         return $this;
     }
+    
 
 
 

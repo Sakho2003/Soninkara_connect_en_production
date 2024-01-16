@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
                     'Mauritanie' => 'mr',
                     'Sénégal' => 'sn',
                 ],
-                'required' => true, // Ou false selon vos besoins
+                'required' => true,
                 'placeholder' => 'Sélectionnez votre pays',
             ])
 

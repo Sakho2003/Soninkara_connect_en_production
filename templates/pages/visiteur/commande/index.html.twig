@@ -15,7 +15,7 @@
             <div class="progress" id="progress"></div>
             <div class="progress-step progress-step-active" data-title="Expéditeur"></div>
             <div class="progress-step" data-title="Destinataire"></div>
-            <div class="progress-step" data-title="Tarifs"></div>
+            {# <div class="progress-step" data-title="Tarifs"></div> #}
             <div class="progress-step" data-title="Paiement"></div>
         </div>
 
@@ -52,13 +52,13 @@
                 {{ form_errors(form.weight) }}
             </div>
 
-<!-- Étape Tarifs (cachée initialement) -->
-<div class="form-step" id="tarifEstimeStep" style="display: none;">
-    <div class="form-group">
-        {{ form_label(form.tarifEstime) }}
-        {{ form_widget(form.tarifEstime, {'attr': {'id': 'tarifEstimeDisplay', 'disabled': 'disabled'}}) }}
-    </div>
-</div>
+            {# <!-- Étape Tarifs (cachée initialement) -->
+            <div class="form-step" id="tarifEstimeStep" style="display: none;">
+                <div class="form-group">
+                    {{ form_label(form.tarifEstime) }}
+                    {{ form_widget(form.tarifEstime, {'attr': {'id': 'tarifEstimeDisplay', 'disabled': 'disabled'}}) }}
+                </div>
+            </div> #}
 
 
             <!-- Étape Paiement -->

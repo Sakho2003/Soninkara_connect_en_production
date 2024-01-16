@@ -19,7 +19,7 @@ class PaymentController extends AbstractController
     #[Route('/admin/paiements', name: 'admin_paiements')]
     public function gestionPaiements(): Response
     {
-        // Logique pour la gestion administrative des paiements
+        // Logique pour la gestion administrative des paiements gerer plus tard
         // ...
 
         return $this->render('pages/administrateur/payment/index.html.twig', [

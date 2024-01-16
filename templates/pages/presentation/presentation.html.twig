@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Soninkara Connect - Sakho Abdarahmane</title>
+    <link rel="stylesheet" href="{{ asset('presentation/style.css') }}">
+</head>
+<body>
+    <header>
+            <h1>Soninkara Connect - Sakho Abdarahmane</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="presentation.html">Présentation</a></li>
+                    <li><a href="fonctionnement.html">Fonctionnement</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <section>
+            <h2>Présentation</h2>
+            <p>Bonjour honorable jury,</p>
+    
+            <p>Je suis Sakho Abdarahmane, un passionné du développement web âgé de 20 ans. Grâce à une formation offerte par Pôle Emploi, j'ai eu l'opportunité d'explorer le vaste monde du développement web.</p>
+    
+            <p>Aujourd'hui, je suis ravi de vous présenter les compétences et l'expérience que j'ai acquises au cours de cette formation. Mon projet phare a été le développement d'une plateforme innovante d'envoi de colis en ligne, interconnectant la France, la Mauritanie et le Sénégal. Ce projet a été réalisé avec le framework Symfony.</p>
+    
+            <p>Ce voyage m'a permis de maîtriser plusieurs technologies essentielles. Du côté du front-end, j'ai utilisé HTML, CSS, et Bootstrap pour offrir une expérience utilisateur responsive. JavaScript a été intégré pour ajouter des fonctionnalités interactives. Côté back-end, j'ai opté pour PHP avec Symfony et Doctrine pour une gestion efficace des données. L'utilisation de Composer, NPM, et Git a facilité la gestion des dépendances et le contrôle de version.</p>
+    
+            <p>Je suis prêt à partager avec vous les détails de mon parcours et les choix technologiques effectués tout au long du développement de ce projet. N'hésitez pas à poser vos questions, je me tiens à votre disposition pour discuter plus en détail de mon expérience.</p>
+    
+            <!-- la présentation ... -->
+            <button id="presentationBtn">Découvrir la Présentation</button>
+            <div id="presentationBlock" class="hidden block-container">
+                <div class="block-item">
+                    <p>En tant que jeune passionné d'informatique, j'ai saisi l'opportunité qui m'a été offerte par Pôle Emploi pour me former dans le domaine du développement web. À 20 ans, j'ai exploré de nombreuses technologies et développé des compétences solides dans ce domaine en constante évolution.</p>
+                </div>
+                <div class="block-item">
+                    <p>Pendant cette formation, j'ai été guidé par ma curiosité et mon désir d'apprendre. Chaque projet était une nouvelle opportunité d'approfondir mes connaissances et de relever des défis techniques. Mon projet principal, la plateforme d'envoi de colis en ligne, représente l'aboutissement de cette aventure passionnante.</p>
+                </div>
+                <div class="block-item">
+                    <p>Le choix du framework Symfony pour le développement de ma plateforme a été motivé par sa robustesse et sa flexibilité. L'utilisation de Symfony et Doctrine m'a permis de mettre en place une architecture backend solide, offrant ainsi une base stable pour les fonctionnalités avancées de la plateforme.</p>
+                </div>
+            </div>
+        </section>
+    
+        <section class="encore">
+            <h2>Soninkara Connect - Révolution dans l'Envoi de Colis</h2>
+            <button id="soninkaraDetailsBtn" class="revealBtn block-btn" onclick="toggleContent('soninkaraDetails', 'soninkaraDetailsBtn')">Découvrir Soninkara Connect</button>
+            <div id="soninkaraDetails" class="hidden block-container">
+                
+            <h3>Objectifs de l’application :</h3>
+            <ul>
+                <li><strong>Simplifier le processus d'envoi de colis :</strong> Grâce à une interface utilisateur intuitive, nos clients peuvent organiser l'envoi de leurs colis en quelques clics seulement.</li>
+                <li><strong>Assurer une livraison rapide et fiable :</strong> Nous collaborons avec des partenaires logistiques de confiance pour garantir que chaque colis arrive à destination en toute sécurité et dans les meilleurs délais.</li>
+                <li><strong>Offrir un service accessible et abordable :</strong> Soninkara Connect s'engage à proposer des tarifs compétitifs, rendant le service d'envoi de colis accessible à un plus grand nombre de personnes.</li>
+                <li><strong>Renforcer les liens entre les communautés :</strong> En facilitant les échanges entre la France, la Mauritanie et le Sénégal, nous contribuons à renforcer les liens entre les diasporas et leurs pays d'origine.</li>
+            </ul>
+    
+            <h3>Fonctionnalités clés :</h3>
+            <ul>
+                <li><strong>Suivi en temps réel :</strong> Nos clients peuvent suivre le parcours de leur colis à tout moment, offrant ainsi une transparence totale et une tranquillité d'esprit.</li>
+                <li><strong>Service clientèle dédié :</strong> Une équipe d'assistance est toujours disponible pour répondre aux questions et résoudre les éventuels problèmes rencontrés.</li>
+                <li><strong>Options de livraison flexibles :</strong> Nous offrons diverses options de livraison pour répondre aux différents besoins de nos clients, qu'il s'agisse de la rapidité ou de la rentabilité.</li>
+            </ul>
+    
+            <h3>Vision à long terme :</h3>
+            <p>Notre vision est de devenir le leader incontesté dans le domaine de l'envoi de colis entre la France, la Mauritanie et le Sénégal, en continuant d'innover et d'améliorer nos services. Nous aspirons à étendre notre réseau et à intégrer de nouvelles technologies pour rendre l'expérience d'envoi de colis encore plus fluide et agréable pour nos clients.</p>
+            <!-- <button h>En savoir plus sur Soninkara Connect</button> -->
+            <a href="{{ path('accueil') }}" id="soninkaraBtn" class="revealBtn block-btn" onclick="toggleContent('soninkaraText', 'soninkaraBtn')">En savoir plus sur Soninkara Connect</a>
+
+            
+        <section>
+            <h2>Moyens Utilisés</h2>    
+            <p>Voici quelques-uns des moyens que j'ai utilisés tout au long du développement de ma plateforme :</p>
+    
+            <button id="meansBtn" class="revealBtn block-btn" onclick="toggleBlock('meansBlock'); toggleButton('meansBtn')">Découvrir les Moyens Utilisés</button>
+            <div id="meansBlock" class="hidden block-container">
+                <div class="block-item">
+                    <p>J'ai utilisé le framework Symfony pour structurer le backend de ma plateforme. Symfony m'a fourni une base solide pour gérer les routes, la sécurité et les interactions avec la base de données.</p>
+                </div>
+                <div class="block-item">
+                    <p>Le choix des technologies front-end a inclus HTML pour la structure, CSS pour la mise en forme, et Bootstrap pour assurer un design responsive sur différents appareils.</p>
+                </div>
+                <div class="block-item">
+                    <p>JavaScript a été intégré pour ajouter de l'interactivité aux pages web, facilitant ainsi des fonctionnalités dynamiques côté client.</p>
+                </div>
+            </div>
+        </section>
+
+<script src="{{ asset('presentation/script.js') }}"></script>
+</body>
+</html>
